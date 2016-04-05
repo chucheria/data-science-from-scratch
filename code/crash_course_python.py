@@ -189,5 +189,118 @@ tweet = {
 tweet_keys = tweet.keys()           # list of keys
 tweet_values = tweet.values()       
 
+'user' in tweet                     # uses a fast dict in
+'chucheria' in tweet_values
+
+# defaultdict
+
+word_counts = {}
+for word in document:               
+    if word in word_counts:
+        word_counts[word] += 1      # increment word count if it's already in the dictionary
+    else:
+        word_counts[word] = 1       # add word to the dictionary if it's not
+
+word_counts = {}
+for word in document:
+    try:
+        word_counts[word] += 1      # try to look up a missing key
+    except KeyError:
+        word_counts[word] = 1
+        
+word_counts = {}
+for word in document:
+    precious_count = word_counts.get(word, 0)
+    word_counts[word] = previous_count + 1
+
+from collections import defaultdict
+
+word_counts = defaultdict(int)      # defaultdict is like a regular dictionary
+                                    # except that when you try to look up a key it
+for word in document:               # doesn’t contain, it first adds a value for it using a zero-argument function you provided
+    word_counts[word] += 1          # when you created it,int() produces 0        
+
+dd_list = defaultdict(list)         # list() produces an empty dict
+dd_list[2].append(1)                # dd_list = {2: [1]}
+
+dd_dict = defaultdict(dict)         # dict() produces an empty dict
+dd_dict['Joel']['City'] = 'Seattle' # { 'Joel' : { 'City: Seattle' }}
+
+dd_pair = defaultdict(lambda: [0, 0])
+dd_pair[2][1] = 1                   # dd_pair = {2: [0, 1]}
 
 
+
+# Counter
+
+from collections import Counter
+c = Counter([0, 1, 2, 0])           # c is a Counter like { 0 : 2, 1 : 1, 2 : 1}
+
+word_counts = Counter(document)     # to counts words in document
+
+for word, count in word_counts.most_common(10):
+    print word, count
+    
+
+# Sets
+
+s = set()
+s.add(1)            # s = { 1 }
+s.add(2)            # s = { 1, 2 }
+s.add(2)            # s = { 1, 2 }
+
+x = len(s)          # x = 2
+3 in s              # False
+
+'zip' in words      # checks every element - slow if long list
+'zip' in set(words) # very fast to check
+
+items = [1, 2, 3, 1, 2, 3]
+len(items)                      # 6
+distinct = len(set(items))      # 3
+
+
+# Control flow
+
+if 1 > 2:
+    message = "if only 1 were greater than two..."
+elif 1 > 3:
+    message = "elif stands for 'else if'"
+else:
+    message = "when all else fails use else (if you want to)"
+    
+parity = "even" if x % 2 == 0 else "odd"        # write a ternary if-then-else!
+
+x = 0
+while x < 10:                                   # while loop
+    print x, "is less than 10"
+    x += 1
+
+for x in range(10):                             # for loop
+    print x, "is less than 10"
+    
+for x in range(10):
+    if x == 3:
+        continue                # go immediately to the next iteration
+    if x == 5:
+        break                   # quit the loop entirely
+    print x
+    
+
+# Truthiness
+
+1 < 2               # True
+True == False       # False
+
+x = None
+print x is None     # True and Pythonic
+
+s = some_function_that_returns_a_string()
+if s:
+    first_char = s[0]                   # if s is a non-empty string then is True
+else: 
+    first_char = ''
+
+first_char = s and s[9]             # and returns the second value when the first is "truthy"
+
+safe_x = x or 0                     # if x is a number or possibly None - this returns 0 if "falsy"
