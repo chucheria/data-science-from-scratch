@@ -17,28 +17,31 @@ for i in [1, 2, 3, 4, 5]:
     for j in [1, 2, 3, 4, 5]:
         print j                         # first line in "for j" block
         print i + j                     # last line in "for j" block
-    print i                             # last line in "for i" block 
+    print i                             # last line in "for i" block
 print 'done looping'
 
-long_winded_computation = (1 + 2 + 3 + 4 + 5 + 6 + 7)   # whitespace is ignored inside patentheses and brackets
+# whitespace is ignored inside patentheses and brackets
+long_winded_computation = (1 + 2 + 3 + 4 + 5 + 6 + 7)
 
-list_of_lists = [ [1, 2, 3], [4, 5, 6], [7, 8, 9]]
-easier_to_read_list_of_lists = [ [1, 2, 3],
-                                 [4, 5, 6],
-                                 [7, 8, 9] ]            
+list_of_lists = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+easier_to_read_list_of_lists = [[1, 2, 3],
+                                [4, 5, 6],
+                                [7, 8, 9]]
 
-                                 
+
 # Modules
 
 import re
 my_regex = re.compile('[0-9]+', re.I)           # import the module itself
 
+# import the module with an alias
 import re as regex
-my_regex = regex.compile('[0-9]+', re.I)        # import the module with an alias
+my_regex = regex.compile('[0-9]+', re.I)
 
 import matplotlib.pyplot as plt
 
-from collections import defaultdict, Counter    # import specific values from a module
+# import specific values from a module
+from collections import defaultdict, Counter
 lookup = defaultdict(int)
 my_counter = Counter()
 
@@ -51,24 +54,28 @@ from __future__ import division
 
 
 # Functions
-
 def double(x):
-    ''' this function multiplies its input by 2 '''
+    """ this function multiplies its input by 2 """
     return x * 2
 
+
 def apply_to_one(f):
-    ''' calls the function f with 1 as its argument 
-    functions are first-class, we can assign them to variables 
-    and pass them into functions '''
+    """
+    calls the function f with 1 as its argument
+    functions are first-class, we can assign them to variables
+    and pass them into functions
+    """
     return f(1)
+
 
 my_double = double              # refers to the previously defined function
 x = apply_to_one(my_double)     # equals 2
 
 y = apply_to_one(lambda x: x + 4)   # equals 5
 
+
 def my_print(message='my default message'):
-    ''' functions parameters can be given default arguments'''
+    """ functions parameters can be given default arguments """
     print message
 
 my_print('Hello')               # prints Hello
@@ -95,7 +102,7 @@ len(not_tab_string)             # 2
 
 multi_line_string = ''' This is the first line.
                     This is the second line.'''
-                    
+
 
 # Exceptions
 
@@ -109,7 +116,7 @@ except ZeroDivisionError:
 
 integer_list = [1, 2, 3]
 heterogeneous_list = ['string', 0.1, True]
-list_of_lists = [ integer_list, heterogeneous_list, [] ]
+list_of_lists = [integer_list, heterogeneous_list, []]
 
 list_length = len(integer_list)             # 3
 list_sum = sum(integer_list)                # 6
@@ -140,16 +147,18 @@ _, y = [1, 2]               # y = 2 and the first element is irrelevant
 # Tuples
 
 my_tuple = (1, 2)
-other_tuple  = 3, 4
+other_tuple = 3, 4
 
 try:
     my_tuple[1] = 3
 except TypeError:
     print 'cannot modify a tuple'
-    
-def sum_and_product(x,y):
-    ''' tuples are a convenient way to return multiple values from functions '''
-    return (x + y),(x * y)
+
+
+def sum_and_product(x, y):
+    """ tuples are a convenient way to return multiple values from functions"""
+    return (x + y), (x * y)
+
 
 sp = sum_and_product(2, 3)      # (5, 6)
 s, p = sum_and_product(5, 10)   # s = 15, p = 50
@@ -161,9 +170,9 @@ x, y = y, x                     # swap variables
 # Dictionaries
 
 empty_dict = {}                     # pythonic
-grades = { 'Joel': 80, 'Tim': 95 }  # dictionary
+grades = {'Joel': 80, 'Tim': 95}  # dictionary
 joels_grade = grades['Joel']        # 80
-try:                                # you'll get a KeyError if ask for a key 
+try:                                # you'll get a KeyError if ask for a key
     kates_grade = grades['Kate']    # that's not in the dictionary
 except KeyError:
     print 'no grade for Kate'
@@ -171,8 +180,9 @@ except KeyError:
 joel_has_grade = 'Joel' in grades   # True
 kate_has_grade = 'Kate' in grades   # False
 
-joels_grade = grades.get('Joel', 0) # if key is not in dictionary returns 0 which is default value
-kates_grade = grades.get('Kate', 0) # 0
+# if key is not in dictionary returns 0 which is default value
+joels_grade = grades.get('Joel', 0)
+kates_grade = grades.get('Kate', 0)     # 0
 no_ones_grade = grades.get('No One')    # if default not specified then is None
 
 grades['Tim'] = 99                  # replaces old value
@@ -180,14 +190,14 @@ grades['Kate'] = 100                # add a third entry
 num_students = len(grades)          # 3
 
 tweet = {
-    'user' : 'chucheria',
-    'text' : 'holi',
+    'user': 'chucheria',
+    'text': 'holi',
     'retweet_count': 100,
     'hashtags': ['greetings', 'holi']
 }                                   # representing structured data
 
 tweet_keys = tweet.keys()           # list of keys
-tweet_values = tweet.values()       
+tweet_values = tweet.values()
 
 'user' in tweet                     # uses a fast dict in
 'chucheria' in tweet_values
@@ -195,9 +205,10 @@ tweet_values = tweet.values()
 # defaultdict
 
 word_counts = {}
-for word in document:               
+for word in document:
     if word in word_counts:
-        word_counts[word] += 1      # increment word count if it's already in the dictionary
+        # increment word count if it's already in the dictionary
+        word_counts[word] += 1
     else:
         word_counts[word] = 1       # add word to the dictionary if it's not
 
@@ -207,7 +218,7 @@ for word in document:
         word_counts[word] += 1      # try to look up a missing key
     except KeyError:
         word_counts[word] = 1
-        
+
 word_counts = {}
 for word in document:
     precious_count = word_counts.get(word, 0)
@@ -216,31 +227,33 @@ for word in document:
 from collections import defaultdict
 
 word_counts = defaultdict(int)      # defaultdict is like a regular dictionary
-                                    # except that when you try to look up a key it
-for word in document:               # doesn’t contain, it first adds a value for it using a zero-argument function you provided
-    word_counts[word] += 1          # when you created it,int() produces 0        
+# except that when you try to look up a key it
+# doesn’t contain, it first adds a value for it
+# using a zero-argument function you provided
+for word in document:
+    word_counts[word] += 1          # when you created it,int() produces 0
 
 dd_list = defaultdict(list)         # list() produces an empty dict
 dd_list[2].append(1)                # dd_list = {2: [1]}
 
-dd_dict = defaultdict(dict)         # dict() produces an empty dict
-dd_dict['Joel']['City'] = 'Seattle' # { 'Joel' : { 'City: Seattle' }}
+dd_dict = defaultdict(dict)          # dict() produces an empty dict
+dd_dict['Joel']['City'] = 'Seattle'  # { 'Joel' : { 'City: Seattle' }}
 
 dd_pair = defaultdict(lambda: [0, 0])
 dd_pair[2][1] = 1                   # dd_pair = {2: [0, 1]}
 
 
-
 # Counter
 
 from collections import Counter
-c = Counter([0, 1, 2, 0])           # c is a Counter like { 0 : 2, 1 : 1, 2 : 1}
+# c is a Counter like { 0 : 2, 1 : 1, 2 : 1}
+c = Counter([0, 1, 2, 0])
 
 word_counts = Counter(document)     # to counts words in document
 
 for word, count in word_counts.most_common(10):
     print word, count
-    
+
 
 # Sets
 
@@ -252,8 +265,8 @@ s.add(2)            # s = { 1, 2 }
 x = len(s)          # x = 2
 3 in s              # False
 
-'zip' in words      # checks every element - slow if long list
-'zip' in set(words) # very fast to check
+'zip' in words       # checks every element - slow if long list
+'zip' in set(words)  # very fast to check
 
 items = [1, 2, 3, 1, 2, 3]
 len(items)                      # 6
@@ -268,7 +281,7 @@ elif 1 > 3:
     message = "elif stands for 'else if'"
 else:
     message = "when all else fails use else (if you want to)"
-    
+
 parity = "even" if x % 2 == 0 else "odd"        # write a ternary if-then-else!
 
 x = 0
@@ -278,14 +291,14 @@ while x < 10:                                   # while loop
 
 for x in range(10):                             # for loop
     print x, "is less than 10"
-    
+
 for x in range(10):
     if x == 3:
         continue                # go immediately to the next iteration
     if x == 5:
         break                   # quit the loop entirely
     print x
-    
+
 
 # Truthiness
 
@@ -297,10 +310,13 @@ print x is None     # True and Pythonic
 
 s = some_function_that_returns_a_string()
 if s:
-    first_char = s[0]                   # if s is a non-empty string then is True
-else: 
+    # if s is a non-empty string then is True
+    first_char = s[0]
+else:
     first_char = ''
 
-first_char = s and s[9]             # and returns the second value when the first is "truthy"
+# and returns the second value when the first is "truthy"
+first_char = s and s[9]
 
-safe_x = x or 0                     # if x is a number or possibly None - this returns 0 if "falsy"
+# if x is a number or possibly None - this returns 0 if "falsy"
+safe_x = x or 0
